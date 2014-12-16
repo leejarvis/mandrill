@@ -26,7 +26,7 @@ import (
 
 func main() {
 	  http.Handle("/", mandrill.EventHandler(func(e mandrill.Event) {
-        fmt.Println(e.Type) #=> sent/click/deferred
+        fmt.Println(e.Type) // sent/click/deferred
         // insert the event into our database or something
 	  }))
 
