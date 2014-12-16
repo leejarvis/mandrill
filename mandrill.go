@@ -18,9 +18,9 @@ func EventsFromReader(r io.Reader) (Events, error) {
 	return events, json.NewDecoder(r).Decode(&events)
 }
 
-// EventHandler implements the net/http handler interface. This
-// function requires an EventProcessor to be set, otherwise
-// it'll panic early.
+// EventHandler implements the net/http handler interface. It
+// responds with a 200 for any HEAD request (as per the Mandrill
+// docs). ep is called for every event received.
 func EventHandler(ep EventProcessor) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		// HEAD is sent to verify the endpoint exists
